@@ -1,1 +1,1 @@
-**Chat with gpt*
+**Chat with gpt**
