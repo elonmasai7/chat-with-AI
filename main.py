@@ -1,16 +1,18 @@
-from openai import OpenAI
+from huggingface_hub import InferenceClient
 
-client = OpenAI(
-    api_key="Insert your api key"
+client = InferenceClient(
+    "microsoft/Phi-3-mini-4k-instruct",
+    token="your api key"  # Replace with your actual API key
 )
 
-def chat_with_gpt(prompt):
-    response = client.chat.completions.create(
-        model = "gpt-3.5-turbo",
-        messages = [{"role": "user", "content":  prompt}]
+def chat_with_phi(prompt):
+    response = client.chat_completion(
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=500,
+        stream=False
     )
 
-    return response.choices[0].message.context.strip()
+    return response['choices'][0]['message']['content'].strip()
 
 if __name__ == "__main__":
     while True:
@@ -18,5 +20,5 @@ if __name__ == "__main__":
         if user_input.lower() in ["quit", "exit", "bye"]:
             break
 
-        response = chat_with_gpt(user_input)
-        print("chatbot: ", response)
+        response = chat_with_phi(user_input)
+        print("chatbot:", response)
