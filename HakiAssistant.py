@@ -2,7 +2,7 @@ from huggingface_hub import InferenceClient
 
 client = InferenceClient(
     "microsoft/Phi-3-mini-4k-instruct",
-    token="hf api key"  # Replace with your actual API key
+    token="hf api key"  
 )
 
 import requests
