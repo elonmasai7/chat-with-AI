@@ -12,7 +12,7 @@ def crawl_website(url):
     """Crawl the specified website and extract relevant information."""
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Raise an error for bad responses
+        response.raise_for_status()  
 
         soup = BeautifulSoup(response.text, 'html.parser')
         # Extract relevant information (customize based on your needs)
